@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Script handles client configuration
+
+HostName 18.208.141.76
+User ubuntu
+PasswordAuthentication No
+IdentifyFile ~/.ssh/school
