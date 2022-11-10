@@ -7,7 +7,6 @@ config_frontend="\nfrontend\n\tfrontend main\n\tbind *:80\n\tdefault_backend web
 config_backend="backend\n\tbackend web_servers\n\tbalance roundrobin\n\tserver 4905-web-01 3.93.184.123:80\n\tserver 4905-web-02 54.211.211.168:80\n"
 
 sudo apt-get -y update
-sudo apt-get -y upgrade
 sudo apt-get -y install haproxy
 sudo service haproxy start
 echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
