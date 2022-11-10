@@ -4,7 +4,7 @@
 # Requests will be distributed using round robin algorithm
 
 config_frontend="frontend\n\tfrontend main\n\tbind *:80\n\tdefault_backend web_servers\n"
-config_backend="backend\n\tbackend web_servers\n\tbalance roundrobin\n\tserver 4905-web-01 3.93.184.123\n\tserver 4905-web-02 54.211.211.168\n"
+config_backend="backend\n\tbackend web_servers\n\tbalance roundrobin\n\tserver 4905-web-01 3.93.184.123:80\n\tserver 4905-web-02 54.211.211.168:80\n"
 
 sudo apt-get -y update
 sudo apt-get -y upgrade
