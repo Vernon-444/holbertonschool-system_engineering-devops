@@ -1,37 +1,42 @@
 #!/usr/bin/python3
-"""Gets info about employee from an API"""
+"""Module to gather employee to do information from an API"""
+import requests
+import sys
 
 
 def get_employee_todo():
-        """Gets info from JSON Placeholder API, generates fake data for
-        Employee Name, Employee To Do, Employee Completed To Do
-        Based on input of an Employee ID as an integer"""
-        employee_id = sys.argv[1]
-        num_completed = 0
-        source = "https://jsonplaceholder.typicode.com/"
+    """This method gathers employee to do information from an API
+    See README for display format
+    """
+    num_complete = 0
+    employee_id = sys.argv[1]
+    url = "https://jsonplaceholder.typicode.com/"
 
-        employee_name = (requests.get(f'{source}users/{employee_id}')).json()
+    employee_name = requests.get(url + 'users/{}'.format(employee_id))
+    employee_todo = requests.get(url + 'todos?userId={}'.format(employee_id))
 
-        # testing above code so far
+    employee_name = employee_name.json()
+    employee_todo = employee_todo.json()
 
-        # print(f'Employee Name Result: {employee_name}')
-        # print(f'Employee_to_to Result: {employee_to_do}')
+    # print("employee name response", end="")
+    # print(employee_name)
+    # print("todo response", end="")
+    # print(employee_todo)
 
-        completed_list = []
+    completed = []
 
-        for task in employee_to_do:
-            if task.get("completed") is True:
-                num_completed += 1
-                completed_list.append(task.get("title"))
-
-        # print(num_completed)
-        # print(len(employee_to_do))
-
-        name = employee_name.get("name")
-        print(f'Employee {name} is done with'
-              f'tasks({num_completed}/{len(employee_to_do)}):')
-        for task in completed_list:
-            print(f'\t {task}')
+    for task in employee_todo:
+        if task.get("completed") is True:
+            num_complete += 1
+            completed.append(task.get("title"))
+    # print(num_complete)
+    # print(len(employee_todo))
+    name = employee_name.get("name")
+    a = num_complete
+    b = len(employee_todo)
+    print("Employee {} is done with tasks({}/{}):".format(name, a, b))
+    for task in completed:
+        print("\t {}".format(task))
 
 if __name__ == "__main__":
     get_employee_todo()
