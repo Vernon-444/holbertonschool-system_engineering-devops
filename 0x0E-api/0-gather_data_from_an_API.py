@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+"""Module to get employee info from an API"""
 import sys
 import requests
 
